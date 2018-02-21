@@ -20,7 +20,7 @@ function startServer() {
 		console.log("Request recieved for " + req.url);
 		Result.find((err, results) => {
 			if (err) return handleError(err);
-			console.log(results);
+			//Render index with database contents
 			res.render("index", {results: results});
 		});
 		console.log("Sent " + req.url);
@@ -84,6 +84,6 @@ function databaseSetup() {
 		console.log("No DB_HOST environment variable set. Cannot connect to DB.");
 	}
 }
-console.log();
+
 databaseSetup();
 startServer()
