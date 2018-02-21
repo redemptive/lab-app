@@ -58,22 +58,24 @@ function startServer() {
 }
 
 function databaseSetup() {
-	var connection = mongoose.createConnection(process.env.DB_HOST);
-	var schema = new Schema({
-		studentName: String,
-		teacherName: String,
-		score: String,
-		labName: String,
-		time: String,
-		date: Date
-	});
-	const Result = connection.model('Result', schema);
-	console.log("Connected sucessfully to " + process.env.DB_HOST);
+	//Check for the DB_HOST environment variable
+	if (process.env.DB_HOST) {
+		//Connect to the DB if the env variable is there
+		const connection = mongoose.createConnection(process.env.DB_HOST);
+		const  schema = new Schema({
+			studentName: String,
+			teacherName: String,
+			score: String,
+			labName: String,
+			time: String,
+			date: Date
+		});
+		const Result = connection.model('Result', schema);
+		console.log("Connected sucessfully to " + process.env.DB_HOST);
+	} else {
+		console.log("No DB_HOST environment variable set. Cannot connect to DB.");
+	}
 }
 
-if (process.env.DB_HOST) {
-	databaseSetup();
-} else {
-	console.log("No DB_HOST environment variable set. Cannot connect to DB.");
-}
+databaseSetup();
 startServer()
