@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+var Result;
 app.set("view engine", "ejs");
 const port = 3000;
 
@@ -39,6 +40,7 @@ function startServer() {
 	});
 	app.post("/addresult", function(req, res) {
 		console.log("Post request recieved for " + req.url + " from " + req.connection.remoteAddress);
+		//Create new Result object with the params
 		newResult = Result({
 			studentName: req.body.studentName,
 			teacherName: req.body.teacherName,
@@ -47,6 +49,7 @@ function startServer() {
 			time: req.body.time,
 			date: req.body.date
 		});
+		//Save the new object to the db
 		newResult.save();
 		res.write("Success! Added to database");
  		res.end();
@@ -70,7 +73,7 @@ function databaseSetup() {
 			time: String,
 			date: Date
 		});
-		const Result = connection.model('Result', schema);
+		Result = connection.model('Result', schema);
 		console.log("Connected sucessfully to " + process.env.DB_HOST);
 	} else {
 		console.log("No DB_HOST environment variable set. Cannot connect to DB.");
