@@ -48,9 +48,9 @@ function startServer() {
 			date: req.body.date
 		});
 		newResult.save();
-		res.write("Success!");
+		res.write("Success! Added to database");
  		res.end();
- 		console.log("Sent " + req.url);
+ 		console.log("Sent incoming data to " + process.env.DB_HOST);
 	});
 	app.listen(port, () => {
 		console.log("Server started on port " + port); 
