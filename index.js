@@ -15,6 +15,7 @@ const port = 3000;
 
 
 function startServer() {
+	//Get index page
 	app.get("/", (req, res) => {
 		console.log("Request recieved for " + req.url);
 		Result.find((err, results) => {
@@ -24,6 +25,7 @@ function startServer() {
 		});
 		console.log("Sent " + req.url);
 	});
+	//Get global CSS route
 	app.get("/global.css", (req, res) => {
 		console.log("Request recieved for " + req.url + " from " + req.connection.remoteAddress);
 		res.writeHead(200, {'Content-Type': 'text/css'});
@@ -31,6 +33,7 @@ function startServer() {
 		res.end();
 		console.log("Sent " + req.url);
 	});
+	//Get script.js route
 	app.get("/script.js", (req,res) => {
 		console.log("Request recieved for " + req.url + " from " + req.connection.remoteAddress);
 		res.writeHead(200, {'Content-Type': 'text/javascript'});
@@ -38,16 +41,18 @@ function startServer() {
  		res.end();
  		console.log("Sent " + req.url);
 	});
+	//Post route for adding a result to the database
 	app.post("/addresult", function(req, res) {
 		console.log("Post request recieved for " + req.url + " from " + req.connection.remoteAddress);
 		//Create new Result object with the params
+		var currentDate = new Date();
 		newResult = Result({
 			studentName: req.body.studentName,
 			teacherName: req.body.teacherName,
 			score: req.body.score,
 			labName: req.body.labName,
-			time: req.body.time,
-			date: req.body.date
+			time: currentDate.getHours() + ":" + currentDate.getMinutes(),
+			date: currentDate.getDate() + " " + currentDate.getMonth()
 		});
 		//Save the new object to the db
 		newResult.save();
@@ -71,7 +76,7 @@ function databaseSetup() {
 			score: String,
 			labName: String,
 			time: String,
-			date: Date
+			date: String
 		});
 		Result = connection.model('Result', schema);
 		console.log("Connected sucessfully to " + process.env.DB_HOST);
@@ -79,6 +84,6 @@ function databaseSetup() {
 		console.log("No DB_HOST environment variable set. Cannot connect to DB.");
 	}
 }
-
+console.log();
 databaseSetup();
 startServer()
