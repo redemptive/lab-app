@@ -5,6 +5,12 @@
 	<% include partials/frameworks %>
 </head>
 <body>
+	<div class="container">
 	<h1>Hello</h1>
+		<% for (var i in results) { %>
+			<div class="row">
+				<%= results[i].studentName %>
+			</div>
+		<% } %>
 </body>
 </html>
