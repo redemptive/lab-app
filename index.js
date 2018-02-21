@@ -42,10 +42,10 @@ function startServer() {
 		newResult = Result({
 			studentName: req.body.studentName,
 			teacherName: req.body.teacherName,
-			// score: req.body.score,
-			// labName: req.body.labName,
-			// time: req.body.time,
-			// date: req.body.date
+			score: req.body.score,
+			labName: req.body.labName,
+			time: req.body.time,
+			date: req.body.date
 		});
 		newResult.save();
 		res.write("Success!");
@@ -57,15 +57,23 @@ function startServer() {
 	});
 }
 
-var connection = mongoose.createConnection("mongodb://34.243.248.231/lab-db");
-var schema = new Schema({
-	studentName: String,
-	teacherName: String,
-	score: String,
-	labName: String,
-	time: String,
-	date: Date
-});
+function databaseSetup() {
+	var connection = mongoose.createConnection(process.env.DB_HOST);
+	var schema = new Schema({
+		studentName: String,
+		teacherName: String,
+		score: String,
+		labName: String,
+		time: String,
+		date: Date
+	});
+	const Result = connection.model('Result', schema);
+	console.log("Connected sucessfully to " + process.env.DB_HOST);
+}
 
-const Result = connection.model('Result', schema);
+if (process.env.DB_HOST) {
+	databaseSetup();
+} else {
+	console.log("No DB_HOST environment variable set. Cannot connect to DB.");
+}
 startServer()
