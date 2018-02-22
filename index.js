@@ -8,9 +8,11 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+
 //Variables
 var Result;
 const port = 3000;
+
 //App configuration
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,6 +27,26 @@ function startServer() {
 			if (err) return handleError(err);
 			//Render index with database contents
 			res.render("index", {results: results});
+		});
+		console.log("Sent " + req.url);
+	});
+	//Get reports route
+	app.get("/reports", (req, res) => {
+		console.log("Request recieved for " + req.url);
+		Result.find((err, results) => {
+			if (err) return handleError(err);
+			//Render index with database contents
+			res.render("reports", {results: results});
+		});
+		console.log("Sent " + req.url);
+	});
+	//Get labs route
+	app.get("/labs", (req, res) => {
+		console.log("Request recieved for " + req.url);
+		Result.find((err, results) => {
+			if (err) return handleError(err);
+			//Render index with database contents
+			res.render("labs", {results: results});
 		});
 		console.log("Sent " + req.url);
 	});
@@ -47,8 +69,9 @@ function startServer() {
 	//Post route for adding a result to the database
 	app.post("/addresult", function(req, res) {
 		console.log("Post request recieved for " + req.url + " from " + req.connection.remoteAddress);
-		//Create new Result object with the params
+		//Get current date
 		let currentDate = new Date();
+		//Create new Result object with the params
 		let newResult = Result({
 			studentName: req.body.studentName,
 			teacherName: req.body.teacherName,
