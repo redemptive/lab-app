@@ -17,6 +17,7 @@ const port = 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
+app.use(express.static('resources'))
 
 //Functions
 function startServer() {
@@ -35,7 +36,7 @@ function startServer() {
 		console.log("Request recieved for " + req.url);
 		Result.find((err, results) => {
 			if (err) return handleError(err);
-			//Render index with database contents
+			//Render reports with database contents
 			res.render("reports", {results: results});
 		});
 		console.log("Sent " + req.url);
@@ -49,22 +50,6 @@ function startServer() {
 			res.render("labs", {results: results});
 		});
 		console.log("Sent " + req.url);
-	});
-	//Get global CSS route
-	app.get("/global.css", (req, res) => {
-		console.log("Request recieved for " + req.url + " from " + req.connection.remoteAddress);
-		res.writeHead(200, {'Content-Type': 'text/css'});
-		res.write(fs.readFileSync("./resources/global.css","utf-8"));
-		res.end();
-		console.log("Sent " + req.url);
-	});
-	//Get script.js route
-	app.get("/script.js", (req,res) => {
-		console.log("Request recieved for " + req.url + " from " + req.connection.remoteAddress);
-		res.writeHead(200, {'Content-Type': 'text/javascript'});
-		res.write(fs.readFileSync("./resources/script.js","utf-8"));
- 		res.end();
- 		console.log("Sent " + req.url);
 	});
 	//Post route for adding a result to the database
 	app.post("/addresult", function(req, res) {
@@ -124,6 +109,8 @@ async function databaseSetup() {
 	} else {
 		//User has no DB_HOST environment variable set
 		console.log("No DB_HOST environment variable set. Cannot connect to DB.");
+		console.log("Exiting...");
+		process.exit();
 	}
 }
 
