@@ -9,7 +9,7 @@ body {
 .container {
 	width: 80%;
 	margin: auto;
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 
 ul {
@@ -82,6 +82,7 @@ th, td {
 }
 
 #newsletter {
+	overflow: hidden;
 	padding: 8px;
 	color: #ffffff;
 	background: #111a20;
@@ -95,3 +96,66 @@ th, td {
 #newsletter form {
 	float: right;
 }
+
+.footer {
+	color: #f10db9;
+}
+
+ol.even {
+	position: relative;
+	left: 3.93455rem;
+	margin-bottom: -6%;
+}
+
+ol.odd {
+	position: relative;
+	margin-bottom: -5.7%;
+}
+
+.hex {
+	position: relative;
+	margin: 1em auto;
+	width: 4rem;
+	height: 6.946rem;
+	background: #111a20;
+	transform: rotate(-90deg);
+	display: inline-block;
+	list-style-type: none;
+	margin-right: 3.61538rem;
+	transition: all 150ms ease-in-out;
+	z-index: 2;
+}
+
+.hex:before, .hex:after {
+	position: absolute;
+	width: inherit;
+	height: inherit;
+	border-radius: inherit;
+	background: inherit;
+	content: '';
+	z-index: -1;
+}
+
+.hex:before {
+	transform: rotate(60deg);
+}
+
+.hex:after {
+	transform: rotate(-60deg);
+}
+
+.hex:hover {
+	background: #f10db9;
+	cursor: pointer;
+}
+
+ .hex .hex-content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-size: 11px;
+
+	transform: translate(-50%, -50%) rotate(90deg);
+
+	color: white;
+ }
