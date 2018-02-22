@@ -2,7 +2,8 @@ body {
 	font: 15px/1.5 Trebuchet MS, Helvetica, sans-serif;
 	background-color: src="https://ae01.alicdn.com/kf/HTB1Mp7LSpXXXXXaXVXXq6xXFXXXJ/3D-Modern-Geometric-Wall-Paper-Roll-for-Walls-Vinyl-Waterproof-3D-Grid-Wallpapers-PVC-Hexagon-Background.jpg_640x640.jpg";
 	padding: 0;
-	margin: 0;	
+	margin: 0;
+	background-color: #a8a8a8a8;
 }
 
 .container {
@@ -56,7 +57,7 @@ header .highlight, header .current a {
 }
 
 header a:hover {
-	color: #34beef;
+	color: #f10db9;
 	font-weight: bold;
 }
 
