@@ -68,7 +68,7 @@ function startServer() {
 			score: req.body.score,
 			labName: req.body.labName,
 			time: currentDate.getHours() + ":" + currentDate.getMinutes(),
-			date: currentDate.getDate() + " " + currentDate.getMonth()
+			date: currentDate.getDate() + " " + (currentDate.getMonth() + 1)
 		});
 		//Save the new object to the db
 		newResult.save();
