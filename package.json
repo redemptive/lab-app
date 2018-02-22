@@ -1,20 +1,18 @@
 {
-  "name": "lab-app",
-  "version": "0.0.1",
-  "description": "Lab results app",
-  "main": "index.js",
+  "name": "ExampleLab",
+  "version": "1.0.0",
+  "description": "To test Lab homework",
+  "main": "**/*.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint ."
   },
-  "author": "SpartaGlobal",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.18.2",
-    "ejs": "^2.5.7",
-    "express": "^4.16.2",
-    "fs": "0.0.1-security",
-    "http": "0.0.0",
-    "mongoose": "^5.0.6",
-    "request": "^2.83.0"
-  }
+  "author": "Paul Shan",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "test"
+  ]
 }

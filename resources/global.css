@@ -1,6 +1,5 @@
 body {
 	font: 15px/1.5 Trebuchet MS, Helvetica, sans-serif;
-	background-color: src="https://ae01.alicdn.com/kf/HTB1Mp7LSpXXXXXaXVXXq6xXFXXXJ/3D-Modern-Geometric-Wall-Paper-Roll-for-Walls-Vinyl-Waterproof-3D-Grid-Wallpapers-PVC-Hexagon-Background.jpg_640x640.jpg";
 	padding: 0;
 	margin: 0;
 	background-color: #a8a8a8a8;
@@ -9,7 +8,6 @@ body {
 .container {
 	width: 80%;
 	margin: auto;
-	/*overflow: hidden;*/
 }
 
 ul {
@@ -38,12 +36,10 @@ header li {
 	padding: 0 20px 0 20px;
 }
 
-header #branding {
+header #branding img{
 	float: left;
-}
-
-header #branding h1 {
-	margin: 0;
+	max-height: 100%;
+	width: 135px;
 }
 
 header nav {
@@ -51,7 +47,7 @@ header nav {
 	margin-top: 12px;
 }
 
-header .highlight, header .current a {
+.highlight, header .current a {
 	color: #f10db9;
 	font-weight: bold;
 }
@@ -64,7 +60,6 @@ header a:hover {
 th {
     background-color: #111a20;
     color: #34beef;
-    width: 500px;
 }
 table {
     margin-top: 50px;
