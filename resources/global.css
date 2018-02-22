@@ -20,7 +20,7 @@ ul {
 header {
 	background: #111a20;
 	color: #ffffff;
-	padding-top: 19px;
+	padding-top: 10px;
 	min-height: 70px;
 	border-bottom: #f10db9 3px solid;
 }
@@ -48,7 +48,7 @@ header #branding h1 {
 
 header nav {
 	float: right;
-	margin-top:10px;
+	margin-top: 12px;
 }
 
 header .highlight, header .current a {
