@@ -1,10 +1,10 @@
 {
-  "name": "lab-app",
-  "version": "0.0.1",
-  "description": "Lab results app",
-  "main": "index.js",
+  "name": "ExampleLab",
+  "version": "1.0.0",
+  "description": "To test Lab homework",
+  "main": "**/*.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint ."
   },
   "author": "SpartaGlobal",
   "license": "ISC",
