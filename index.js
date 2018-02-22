@@ -92,11 +92,20 @@ function startServer() {
 	});
 }
 
-function databaseSetup() {
+async function databaseSetup() {
 	//Check for the DB_HOST environment variable
 	if (process.env.DB_HOST) {
+		console.log("Waiting for connection from " + process.env.DB_HOST);
 		//Connect to the DB if the env variable is there
-		const connection = mongoose.createConnection(process.env.DB_HOST + "/lab-db");
+		const connection = await mongoose.createConnection(process.env.DB_HOST + "/lab-db").catch((err) => {
+			if (err) {
+				//Could not establish a connection
+				console.log("Could not connect to " + process.env.DB_HOST);
+				console.log("Exiting...");
+				process.exit();
+			}
+		});
+		//Connection established
 		//Set the schema of the database
 		const schema = new Schema({
 			studentName: String,
@@ -109,6 +118,9 @@ function databaseSetup() {
 		//Set up the model for communicating with the database
 		Result = connection.model('Result', schema);
 		console.log("Connected sucessfully to " + process.env.DB_HOST + "/lab-db");
+		//Now start the server
+		console.log("Starting server...");
+		startServer();
 	} else {
 		//User has no DB_HOST environment variable set
 		console.log("No DB_HOST environment variable set. Cannot connect to DB.");
@@ -116,4 +128,3 @@ function databaseSetup() {
 }
 
 databaseSetup();
-startServer()
