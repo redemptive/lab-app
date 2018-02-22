@@ -2,13 +2,14 @@ body {
 	font: 15px/1.5 Trebuchet MS, Helvetica, sans-serif;
 	background-color: src="https://ae01.alicdn.com/kf/HTB1Mp7LSpXXXXXaXVXXq6xXFXXXJ/3D-Modern-Geometric-Wall-Paper-Roll-for-Walls-Vinyl-Waterproof-3D-Grid-Wallpapers-PVC-Hexagon-Background.jpg_640x640.jpg";
 	padding: 0;
-	margin: 0;	
+	margin: 0;
+	background-color: #a8a8a8a8;
 }
 
 .container {
 	width: 80%;
 	margin: auto;
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 
 ul {
@@ -19,7 +20,7 @@ ul {
 header {
 	background: #111a20;
 	color: #ffffff;
-	padding-top: 19px;
+	padding-top: 10px;
 	min-height: 70px;
 	border-bottom: #f10db9 3px solid;
 }
@@ -47,7 +48,7 @@ header #branding h1 {
 
 header nav {
 	float: right;
-	margin-top:10px;
+	margin-top: 12px;
 }
 
 header .highlight, header .current a {
@@ -56,7 +57,7 @@ header .highlight, header .current a {
 }
 
 header a:hover {
-	color: #34beef;
+	color: #f10db9;
 	font-weight: bold;
 }
 
@@ -81,6 +82,7 @@ th, td {
 }
 
 #newsletter {
+	overflow: hidden;
 	padding: 8px;
 	color: #ffffff;
 	background: #111a20;
@@ -94,3 +96,66 @@ th, td {
 #newsletter form {
 	float: right;
 }
+
+.footer {
+	color: #f10db9;
+}
+
+ol.even {
+	position: relative;
+	left: 3.93455rem;
+	margin-bottom: -6%;
+}
+
+ol.odd {
+	position: relative;
+	margin-bottom: -5.7%;
+}
+
+.hex {
+	position: relative;
+	margin: 1em auto;
+	width: 4rem;
+	height: 6.946rem;
+	background: #111a20;
+	transform: rotate(-90deg);
+	display: inline-block;
+	list-style-type: none;
+	margin-right: 3.61538rem;
+	transition: all 150ms ease-in-out;
+	z-index: 2;
+}
+
+.hex:before, .hex:after {
+	position: absolute;
+	width: inherit;
+	height: inherit;
+	border-radius: inherit;
+	background: inherit;
+	content: '';
+	z-index: -1;
+}
+
+.hex:before {
+	transform: rotate(60deg);
+}
+
+.hex:after {
+	transform: rotate(-60deg);
+}
+
+.hex:hover {
+	background: #f10db9;
+	cursor: pointer;
+}
+
+ .hex .hex-content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-size: 11px;
+
+	transform: translate(-50%, -50%) rotate(90deg);
+
+	color: white;
+ }

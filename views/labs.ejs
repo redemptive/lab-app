@@ -13,42 +13,62 @@
 	<div class="container">
 		<div class="jumbotron">
 			<div class="container">
-				<h2>Welcome to landing-page</h1>
-				<table>
-					<tbody>
-						<tr>
-							<th>Student Name</th>
-							<th>Teacher Name</th>
-							<th>Score</th>
-							<th>Lab Name</th>
-							<th>Time</th>
-							<th>Date</th>
-						</tr>
-	            			<% for (var i in results) { %>
-			            <tr>
-			                <td>
-			                        <%= results[i].studentName %>
-			                    </td>
-			                    <td>
-			                        <%= results[i].teacherName %>
-			                    </td>
-			                    <td>
-			                        <%= results[i].score %>
-			                    </td>
-			                    <td>
-			                        <%= results[i].labName %>
-			                    </td>
-			                    <td>
-			                        <%= results[i].time %>
-			                    </td>
-			                    <td>
-			                        <%= results[i].date %>
-			                    </td>
-			                    
-			                <% } %>
-			            </tr>
-        			</tbody>
-    			</table>
+				<h3>Labs</h3>
+<!-- 				<ol class="odd">
+    				<li class='hex'></li>
+    				<li class='hex'></li>
+					<li class='hex'></li>
+					<li class='hex'></li>
+				</ol>  
+ -->
+				<ol class="odd">
+				  <li class="hex">
+				    <a href="https://github.com/spartaglobal/SpartaInventory"><div class="hex-content">SpartaGlobal InventoryApp</div></a>
+				  </li>
+				  <li class="hex">
+				  	<div class="hex-content">Lab-2</div>
+				  </li>
+				  <li class="hex">
+				  	<div class="hex-content">Lab-3</div>
+				  </li>
+				  <li class="hex">
+				    <div class="hex-content">Lab-4</div>
+				  </li>
+				  <li class="hex">
+				    <div class="hex-content">Lab-5</div>
+				  </li>
+				</ol>
+				<ol class="even">
+				  <li class="hex">
+				    <div class="hex-content">Lab-6</div>
+				  </li>
+				  <li class="hex">
+				  	<div class="hex-content">Lab-7</div>
+				  </li>
+				  <li class="hex">
+				  	<div class="hex-content">Lab-8</div>
+				  </li>
+				  <li class="hex">
+				    <div class="hex-content">Lab-9</div>
+				  </li>
+				</ol>
+				<ol class="odd">
+				  <li class="hex">
+				    <div class="hex-content">Lab-10</div>
+				  </li>
+				  <li class="hex">
+				  	<div class="hex-content">Lab-11</div>
+				  </li>
+				  <li class="hex">
+				  	<div class="hex-content">Lab-12</div>
+				  </li>
+				  <li class="hex">
+				    <div class="hex-content">Lab-13</div>
+				  </li>
+				  <li class="hex">
+				    <div class="hex-content">Lab-14</div>
+				  </li>
+				</ol>
 			</div>
 		</div>
 	</div>
@@ -58,10 +78,13 @@
 		</div>
 	</div>
 	<footer id="newsletter">
-		<div class="container">
 			<h1>Sparta Global</h1>
 			<p>People over Concept over Tools</p>
-		</div>
+			<form>
+				<div class="footer">
+					<p>&copy <a href="https://www.spartaglobal.com/" target="_blank">Sparta Global 2018</a></p>
+      			</div>
+      		</form>
 	</footer>
 </body>
 </html>
