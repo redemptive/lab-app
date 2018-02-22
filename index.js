@@ -79,7 +79,10 @@ function startServer() {
  		io.emit('db add', { for: 'everyone' });
 	});
 	io.on('connection', function(socket){
-  		console.log('a user connected');
+  		console.log('A user connected');
+  		socket.on('disconnect', function(){
+			console.log('A user disconnected');
+		});
 	});
 	//Start server listening on the port defined by the variable port
 	http.listen(port, () => {
