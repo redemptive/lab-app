@@ -10,7 +10,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 //Variables
-var Result;
+let Result;
 const port = 3000;
 
 //App configuration
@@ -46,8 +46,13 @@ function startServer() {
 		console.log("Request recieved for " + req.url);
 		Result.find((err, results) => {
 			if (err) return handleError(err);
+			//Get an array of unique lab names
+			const uniqueLabs = [...new Set(results.map((item) => item.labName))];
 			//Render index with database contents
-			res.render("labs", {results: results});
+			res.render("labs", {
+				results: results,
+				labs: uniqueLabs
+			});
 		});
 		console.log("Sent " + req.url);
 	});
