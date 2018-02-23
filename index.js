@@ -4,7 +4,7 @@ const ejs = require("ejs");
 const fs = require("fs");
 const express = require("express");
 const app = require("express")();
-var http = require('http').Server(app);
+let http = require('http').Server(app);
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
@@ -24,27 +24,17 @@ app.use(express.static('resources'))
 function startServer() {
 	//Get index page
 	app.get("/", (req, res) => {
-		console.log("Request recieved for " + req.url);
+		console.log(`Request recieved for ${req.url}`);
 		Result.find((err, results) => {
 			if (err) return handleError(err);
 			//Render index with database contents
 			res.render("index", {results: results});
 		});
-		console.log("Sent " + req.url);
-	});
-	//Get reports route
-	app.get("/reports", (req, res) => {
-		console.log("Request recieved for " + req.url);
-		Result.find((err, results) => {
-			if (err) return handleError(err);
-			//Render reports with database contents
-			res.render("reports", {results: results});
-		});
-		console.log("Sent " + req.url);
+		console.log(`Sent ${req.url}`);
 	});
 	//Get labs route
 	app.get("/labs", (req, res) => {
-		console.log("Request recieved for " + req.url);
+		console.log(`Request recieved for ${req.url}`);
 		Result.find((err, results) => {
 			if (err) return handleError(err);
 			//Get an array of unique lab names
@@ -55,11 +45,11 @@ function startServer() {
 				labs: uniqueLabs
 			});
 		});
-		console.log("Sent " + req.url);
+		console.log(`Sent ${req.url}`);
 	});
 	//Post route for adding a result to the database
 	app.post("/addresult", function(req, res) {
-		console.log("Post request recieved for " + req.url + " from " + req.connection.remoteAddress);
+		console.log(`Post request recieved for ${req.url} from ${req.connection.remoteAddress}`);
 		//Get current date
 		let currentDate = new Date();
 		//Create new Result object with the params
@@ -75,31 +65,32 @@ function startServer() {
 		newResult.save();
 		res.write("Success! Added to database");
  		res.end();
- 		console.log("Sent incoming data to " + process.env.DB_HOST);
+ 		console.log(`Sent incoming data to db at ${process.env.DB_HOST}`);
  		io.emit('db add', { for: 'everyone' });
 	});
 	// Setup socket so clients pages can auto-refresh when new data is added to the database
 	io.on('connection', function(socket){
-  		console.log('A user connected');
+  		console.log('A user connected, socket established');
   		socket.on('disconnect', function(){
 			console.log('A user disconnected');
 		});
 	});
 	//Start server listening on the port defined by the variable port
 	http.listen(port, () => {
-		console.log("Server started on port " + port); 
+		console.log(`Server started on port ${port}`); 
 	});
 }
 
 async function databaseSetup() {
 	//Check for the DB_HOST environment variable
 	if (process.env.DB_HOST) {
-		console.log("Waiting for connection from " + process.env.DB_HOST);
+		console.log(`Waiting for connection from ${process.env.DB_HOST}`);
 		//Connect to the DB if the env variable is there
 		const connection = await mongoose.createConnection(process.env.DB_HOST + "/lab-db").catch((err) => {
 			if (err) {
 				//Could not establish a connection
-				console.log("Could not connect to " + process.env.DB_HOST);
+				console.log(`Could not connect to ${process.env.DB_HOST}, please check database IP address`);
+				console.log("Then run 'export DB_HOST=mongodb://[database ip]'");
 				console.log("Exiting...");
 				process.exit();
 			}
@@ -116,13 +107,14 @@ async function databaseSetup() {
 		});
 		//Set up the model for communicating with the database
 		Result = connection.model('Result', schema);
-		console.log("Connected sucessfully to " + process.env.DB_HOST + "/lab-db");
+		console.log(`Connected sucessfully to ${process.env.DB_HOST}/lab-db`);
 		//Now start the server
 		console.log("Starting server...");
 		startServer();
 	} else {
-		//User has no DB_HOST environment variable set
-		console.log("No DB_HOST environment variable set. Cannot connect to DB.");
+		//User has no DB_HOST environment variable set for the db ip
+		console.log("Oh no... no DB_HOST environment variable set. Cannot connect to DB.");
+		console.log("Please run 'export DB_HOST=mongodb://[database ip]'");
 		console.log("Exiting...");
 		process.exit();
 	}
