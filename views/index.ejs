@@ -7,78 +7,70 @@
 
 	<title>Lab App</title>
 	<% include partials/frameworks %>
-	<script>
-          $( function() {
-            $( "#accordion" ).accordion({
-                collapsible: true
-            });
-          } );
-          $( function() {
-    var progressbar = $( "#progressbar" ),
-      progressLabel = $( ".progress-label" );
- 
-    progressbar.progressbar({
-      value: false,
-      change: function() {
-        progressLabel.text( progressbar.progressbar( "value" ) + "%" );
-      },
-      complete: function() {
-        progressLabel.text( "Complete!" );
-      }
-    });
- 
-    function progress() {
-      var val = progressbar.progressbar( "value" ) || 0;
- 
-      progressbar.progressbar( "value", val + 2 );
- 
-      if ( val < 99 ) {
-        setTimeout( progress, 80 );
-      }
-    }
- 
-    setTimeout( progress, 2000 );
-  } );
-      </script>
 </head>
 <body>
 	<% include partials/navbar %>
 	<div class="container">
 		<div class="jumbotron">
 			<div class="container">
-				<h3>Welcome to landing-page</h3>
-				<div class="col-md-6">
-				<h1>Labs</h1>
-				<div id="progressbar"><div class="progress-label">Loading...</div></div>
-				<div id="accordion">
-			<% for (var i in results)  { %>
-			<h3>
-				<%= results[i].labName %>|
-				<%= results[i].date %>|
-				<%= results[i].time %>
-			</h3>
-			<div>
-				<p>
-					Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-					ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-					amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-					odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
-				</p>
+				<h3>Labs</h3>
+				<ol class="odd">
+				  <li class="hex">
+				    <a href="https://github.com/spartaglobal/SpartaInventory"><div class="hex-content">SpartaGlobal InventoryApp</div></a>
+				  </li>
+				  <li class="hex">
+				  	<div class="hex-content">Lab-2</div>
+				  </li>
+				  <li class="hex">
+				  	<div class="hex-content">Lab-3</div>
+				  </li>
+				  <li class="hex">
+				    <div class="hex-content">Lab-4</div>
+				  </li>
+				  <li class="hex">
+				    <div class="hex-content">Lab-5</div>
+				  </li>
+				</ol>
+				<ol class="even">
+				  <li class="hex">
+				    <div class="hex-content">Lab-6</div>
+				  </li>
+				  <li class="hex">
+				  	<div class="hex-content">Lab-7</div>
+				  </li>
+				  <li class="hex">
+				  	<div class="hex-content">Lab-8</div>
+				  </li>
+				  <li class="hex">
+				    <div class="hex-content">Lab-9</div>
+				  </li>
+				</ol>
+				<ol class="odd">
+				  <li class="hex">
+				    <div class="hex-content">Lab-10</div>
+				  </li>
+				  <li class="hex">
+				  	<div class="hex-content">Lab-11</div>
+				  </li>
+				  <li class="hex">
+				  	<div class="hex-content">Lab-12</div>
+				  </li>
+				  <li class="hex">
+				    <div class="hex-content">Lab-13</div>
+				  </li>
+				  <li class="hex">
+				    <div class="hex-content">Lab-14</div>
+				  </li>
+				</ol>
 			</div>
-			<% } %>
 		</div>
 	</div>
-			</div>
-		</div>
-	</div>
-	
 <!-- 	<div class='container'>
 		<div class="jumbotron">
 			<p id="platform_1">
 		</div>
 	</div> -->
 	<footer id="newsletter">
-		<div class="container">
 <!-- 			<h1><span class="highlight">Sparta</span>Global</h1>
 			<p>People over Concept over Tools</p> -->
 			<form>
@@ -86,7 +78,6 @@
 					<p>&copy <a href="https://www.spartaglobal.com/" target="_blank">Sparta Global 2018</a></p>
       			</div>
       		</form>
-		</div>
 	</footer>
 </body>
 </html>
