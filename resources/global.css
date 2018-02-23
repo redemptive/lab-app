@@ -57,6 +57,29 @@ header a:hover {
 	font-weight: bold;
 }
 
+.ui-progressbar {
+    position: relative;
+    color:#362878;
+    width:650px;
+    margin-left:auto;
+    margin-right:auto;
+}
+  .progress-label {
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #fff;
+    margin-left:-40px;
+  }
+
+.ui-widget-header {
+  border: 1px solid #E8D1CF;
+  background: #C3AEE0 url("images/ui-bg_highlight-soft_75_cccccc_1x100.png") 50% 50% repeat-x;
+  font-weight: bold;
+  margin-left:-40px;
+}
+
 th {
     background-color: #111a20;
     color: #34beef;
