@@ -68,7 +68,7 @@ function startServer() {
 			teacherName: req.body.teacherName,
 			score: req.body.score,
 			labName: req.body.labName,
-			time: currentDate.getHours() + ":" + (currentDate.getMinutes() < 10) ? "0" + currentDate.getMinutes() : currentDate.getMinutes(),
+			time: currentDate.getHours() + ":" + ((currentDate.getMinutes() < 10) ? "0" + currentDate.getMinutes() : currentDate.getMinutes()),
 			date: currentDate.getDate() + "/" + (currentDate.getMonth() + 1)
 		});
 		//Save the new object to the db
@@ -78,6 +78,7 @@ function startServer() {
  		console.log("Sent incoming data to " + process.env.DB_HOST);
  		io.emit('db add', { for: 'everyone' });
 	});
+	// Setup socket so clients pages can auto-refresh when new data is added to the database
 	io.on('connection', function(socket){
   		console.log('A user connected');
   		socket.on('disconnect', function(){
