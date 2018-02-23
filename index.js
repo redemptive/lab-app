@@ -1,13 +1,14 @@
 //Imports
 const request = require("request");
-const http = require("http");
 const ejs = require("ejs");
 const fs = require("fs");
 const express = require("express");
-const app = express();
+const app = require("express")();
+var http = require('http').Server(app);
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const io = require("socket.io")(http);
 
 //Variables
 let Result;
@@ -68,16 +69,23 @@ function startServer() {
 			score: req.body.score,
 			labName: req.body.labName,
 			time: currentDate.getHours() + ":" + currentDate.getMinutes(),
-			date: currentDate.getDate() + " " + currentDate.getMonth()
+			date: currentDate.getDate() + "/" + (currentDate.getMonth() + 1)
 		});
 		//Save the new object to the db
 		newResult.save();
 		res.write("Success! Added to database");
  		res.end();
  		console.log("Sent incoming data to " + process.env.DB_HOST);
+ 		io.emit('db add', { for: 'everyone' });
+	});
+	io.on('connection', function(socket){
+  		console.log('A user connected');
+  		socket.on('disconnect', function(){
+			console.log('A user disconnected');
+		});
 	});
 	//Start server listening on the port defined by the variable port
-	app.listen(port, () => {
+	http.listen(port, () => {
 		console.log("Server started on port " + port); 
 	});
 }

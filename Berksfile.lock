@@ -1,0 +1,7 @@
+DEPENDENCIES
+  node
+    git: git@github.com:redemptive/chef-node-cookbook.git
+    revision: fac3e0d1b5949b038054c265dddbeb54c433beef
+
+GRAPH
+  node (0.1.0)
