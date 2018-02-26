@@ -1,100 +1,33 @@
-# Sparta Global Lab Repository
+## Title
 
-## Getting Started
+# Sparta Lab App
 
-### How to get the Code for the Lab
+## Description
 
-It is important that you fork this lab repository (repo) and then clone it to your own GitHub repository. Any changes you make must be made on your local machine before being pushed to GitHub. Any lines that should be run in terminal are enclosed in boxes below. 
+This is the app for displaying the data collected by the Jenkins automatic lab marking system
 
-	git clone [ADD YOUR SSH LINK HERE] lab-name
-	git checkout -b develop
-	npm run spartalab
+## Technologies
 
-* Open Terminal
-* Fork this repo: <https://github.com/spartaglobal/ExampleLab>
-* In your GitHub repos open the recently forked version of this repo.
-* Clone the repo, preferably with SSH, to your local machine.
-* Once cloned, make sure to checkout to the Dev branch before starting the lab: `git checkout -b develop`
-* Type in `npm run spartalab` to finish setup
-* You are now ready to begin the lab
+- Node.js
+  - Request
+  - Fs
+  - Ejs
+  - Express
+  - Http
+  - Body-parser
+  - Mongoose
+  - Socket.io
 
-### How to Submit Code for Lab Review
+- HTML
+- CSS
+- JavaScript
 
-	git add .
-	git commit -m "Add your commit comment here"
-	git checkout master
-	git merge develop
-	git push origin master
+## Installation and Usage
 
-* After completing your lab, `git add .` and `git commit -m "Add your commit comment here"` to add and stage changes
-* `git checkout master` to switch from develop branch to the master branch
-* `git merge develop` to merge your develop branch to master
-* `git push origin master` to push your code to the master branch of your forked lab repository on GitHub
-* Locate the pull request button, on your forked repo, add comments to the pull request and wait for the instructor to review the work
+### To Run Locally
 
-### Configure GitHub user name on Local Machine
-	git config --global user.name YOURNAMEHERE
+Clone this repository and ensure mongodb is installed on your computer. After the repository is installed, run `npm install` to install all of the Node.js dependancies listed above for the app to run. Then run `export DB_HOST=mongodb://[database ip]` replacing [database ip] with the ip address of your database (most likely localhost if you are running mongodb locally. The app uses this variable to find and connect to the database. Then run `node index` to actually start the app. If any errors occur or the app cannot connect to the database then you will be informed in the console.
 
-* Configure your name on machine, so that Slack notifications will be under your name. Use your real name when doing this configuration - replace YOURNAMEHERE with your name. `git config --global user.name YOURNAMEHERE`
+### To Run On AWS
 
-### Configure Slack ID to show lab build status
-
-* Get the Slack ID by:
-	* Click on your Slack profile inside slack UI
-	* Click on Profile & Account
-	* Click on More Actions under your name
-	* Click copy Member ID
-	* Open this README.md and edit the below **SlackStudentID**
-	* Replace YOURIDHERE and paste in your Member ID
-	* Contact your instructor after you have found your Member ID. Your 		Instructor will need to give you their **SlackTrainerID**
-	*	Do the same for **SlackTrainerID** and replace TRAINERIDHERE with your 		instructors slack member ID 
-	* Note there is one space after the colon :
-				
-* Edit these below:
-
-		SlackStudentID: YOURIDHERE
-
-		SlackTrainerID: TRAINERIDHERE
-
-## Working on the Lab
-
-### Running Unit Tests #
-	rspec
-* `rspec` to run tests
-
-### Linting
-
-Linting is a process that checks source code for both stylistic and programmtic errors. It uses style guides to help a developer write the best possible code. There are many useful Linters. These include: 
-
-* JSLint
-* CSSlint 
-* JHint
-* PyLint
-
-Eslint uses a javascript linting plugin. This also assumes you have node installed on your local machine. 
-
-The following steps descibe how to use eslint, so that you can immediately check for mistakes you may have made in your lab work. 
-
-#### Using Eslint
-	npm install -g eslint
-	npm install pre-commit --save-dev
-	eslint "filename"
-
-* Move into your local directory 
-* Run the command `npm install -g eslint` to install eslint
-* Install the pre-commit dependency with `npm install pre-commit --save-dev` 
-* Once installed, Eslint can be run using `eslint "filename"`
-
-#### Running using Git 
-	npm install -g eslint
-	npm install pre-commit --save-dev
-	git add .
-	git commit -m "Add your commit comment here"
-	
-* Move into your local directory 
-* Run the command `npm install -g eslint` to install eslint
-* Install the pre-commit dependency with `npm install pre-commit --save-dev` 
-* Once a change has been made `git add .`
-* Then use `git commit -m "Add your commit comment here"`
-* Eslint test will automatically run
-* Will prevent you from progressing if test returns errors
+Clone this repository. You must have packer installed to generate a machine image for deploying to the cloud. Run `packer build packer.json` to create a machine image on aws for launching this app. Then go to the lab-terraform repository, clone it and edit the main.tf file to use the ami name packer generated for your app. Provision a database ami using the lab-db repository and add this to the file also. After all this, run `terraform apply` to get the system up and running on aws.
